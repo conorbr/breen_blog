@@ -1,2 +1,51 @@
 // Import Core Clean Blog SCSS
 @import "../assets/vendor/startbootstrap-clean-blog/scss/clean-blog.scss";
+
+//.title-width {
+//  max-width: 50vw;
+//
+//  @media only screen and (max-width: 700px) {
+//    max-width: 70vw;
+//  }
+//
+//  @media only screen and (max-width: 400px) {
+//    max-width: 90vw;
+//  }
+//}
+
+.my-head {
+  height: auto;
+  width: 90%;
+}
+
+.text-dark-grey {
+  color: #555555 !important;
+}
+
+.custom-subheading {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.1;
+  display: block;
+  margin: 10px 0 0;
+  @include sans-serif-font;
+}
+
+.post-spacing {
+  margin-top: 10em;
+  margin-bottom: 5em;
+}
+
+.breen-blog-orange {
+  color: #ffb300 !important;
+}
+
+header.custom-masthead {
+  margin-bottom: 50px;
+  background: no-repeat scroll center center;
+  position: relative;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

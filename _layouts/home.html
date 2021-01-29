@@ -4,18 +4,25 @@ layout: default
 
 <!-- Page Header -->
 {% if page.background %}
-<header class="masthead" style="background-image: url('{{ page.background | prepend: site.baseurl | replace: '//', '/' }}')">
+<header class="custom-masthead">
   {% else %}
-  <header class="masthead">
+  <header class="custom-masthead">
     {% endif %}
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="page-heading">
-            <h1>{{ site.title }}</h1>
+    <br>
+    <br>
+    <div class="container mt-5 mb-5">
+      <div class="row justify-content-md-center">
+        <div class="col col-md-6 col-12 mr-md-auto mt-md-auto mb-md-auto order-md-2">
+          <div class="page-heading text-center">
+            <img src="../img/my-big-head.png" alt="my-head" class="my-head">
+          </div>
+        </div>
+
+        <div class="col col-md-6 col-12 ml-md-auto mt-md-auto mb-md-auto order-md-1">
+          <div class="page-heading text-center">
+            <h1 class="breen-blog-orange">{{ site.title }}</h1>
             {% if site.description %}
-            <span class="subheading">{{ site.description }}</span>
+            <span class="custom-subheading breen-blog-orange">{{ site.description }}</span>
             {% endif %}
           </div>
         </div>
@@ -48,7 +55,7 @@ layout: default
             {{ site.author }}
             {% endif %}
             on
-            {{ post.date | date: '%B %d, %Y' }} &middot; {% include read_time.html content=post.content %}            
+            {{ post.date | date: '%B %d, %Y' }} &middot; {% include read_time.html content=post.content %}
           </p>
         </article>
 
