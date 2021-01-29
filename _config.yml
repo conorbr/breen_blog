@@ -2,8 +2,8 @@ title:              Breen Blog
 email:              conor@breen.ie
 description:        Want to see me make a to-do app? Me neither
 author:             Conor Breen
-baseurl:            ""
-url:                "https://breen.ie"
+baseurl:            "/breen_blog"
+url:                "https://conorbr.github.io/"
 
 # Social Profiles
 twitter_username:
