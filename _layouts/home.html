@@ -10,7 +10,7 @@ layout: default
     {% endif %}
     <br>
     <br>
-    <div class="container mt-5 mb-5">
+    <div class="container">
       <div class="row justify-content-md-center">
         <div class="col col-md-6 col-12 mr-md-auto mt-md-auto mb-md-auto order-md-2">
           <div class="page-heading text-center">
@@ -20,9 +20,10 @@ layout: default
 
         <div class="col col-md-6 col-12 ml-md-auto mt-md-auto mb-md-auto order-md-1">
           <div class="page-heading text-center">
-            <h1 class="breen-blog-orange">{{ site.title }}</h1>
+            <h1 class="breen-blog-orange custom-head">{{ site.title }}</h1>
             {% if site.description %}
-            <span class="custom-subheading breen-blog-orange">{{ site.description }}</span>
+            <span class="custom-subheading breen-blog-orange custom-subheading">{{ site.description }}</span>
+            <span class="custom-subheading breen-blog-orange custom-subheading">{{ site.sub_description }}</span>
             {% endif %}
           </div>
         </div>
