@@ -1,0 +1,86 @@
+---
+layout: post
+title: InstaBot
+date: '2017-05-23 23:40:49'
+tags:
+- projects
+---
+
+This is a fun little project to turn your rapsberry pi into a instagram powerhouse for getting you followers. It will search users based on tags you give it, like content, follow people and once you get the follow back it will wait a few hours and unfollow them
+
+This project is stupid easy to setup. so lets begin.
+
+First things first:
+
+<code>sudo apt-get update</code>
+<code>sudo apt-get upgrade</code>
+
+
+The project code can be found on Github. credit goes to the creator LevPesha, for this truly amazing project.
+
+Aaaaaand lets clone
+
+<code>git clone https://github.com/instabot-py/instabot.py</code>
+
+This gets the required project files, so what were going to want to do is cd into the project folder.
+
+<code>cd instabot.py</code>
+
+Now that were in our project folder were going to want to go ahead and open up the example.py file. This is the python file that we're going to run. but first we need to make some changes.
+
+The easiest way to make changes to the file is to use nano.
+
+<code>sudo nano example.py</code>
+
+This will open up the example.py using the nano text editor. From here were going to want to put in our username and password so the bot can login. We're also going to want to set the tag list. This is the list of tags that the bot will search and like the content for. so put in the tags you want the bot to focus on.
+
+
+```
+bot = InstaBot(
+    login="your username goes here",
+    password="your password too",
+    like_per_day=1000,
+    comments_per_day=0,
+    tag_list=['follow4follow', 'girlswholift', 'instabreen'],
+    tag_blacklist=['rain', 'thunderstorm'],
+    user_blacklist={},
+    max_like_for_one_tag=50,
+    follow_per_day=300,
+    follow_time=1 * 60,
+    unfollow_per_day=300,
+    unfollow_break_min=15,
+    unfollow_break_max=30,
+    log_mod=0,
+    proxy='',
+    # Use unwanted_username_list to block usernames containing a string
+    ## Will do partial matches; i.e. 'mozart' will block 'legend_mozart'
+    ### 'free_followers' will be blocked because it contains 'free'
+    unwanted_username_list=[
+        'second', 'stuff', 'art', 'project', 'love', 'life', 'food', 'blog',
+        'free', 'keren', 'photo', 'graphy', 'indo', 'travel', 'art', 'shop',
+        'store', 'sex', 'toko', 'jual', 'online', 'murah', 'jam', 'kaos',
+        'case', 'baju', 'fashion', 'corp', 'tas', 'butik', 'grosir', 'karpet',
+        'sosis', 'salon', 'skin', 'care', 'cloth', 'tech', 'rental', 'kamera',
+        'beauty', 'express', 'kredit', 'collection', 'impor', 'preloved',
+        'follow', 'follower', 'gain', '.id', '_id', 'bags'
+    ],
+    unfollow_whitelist=['example_user_1', 'example_user_2'])
+```
+
+Be sure to add a comprehensive tag blacklist, with all of those nsfw words that you don't want the bot to like.
+
+Once all that is done you can quit out of nano
+
+`ctrl + x`
+
+And when it asks you what you would like to call the file, just leave it as is (example.py) by simply pressing `y`
+
+Thats it, you can go ahead now and run it.
+
+`python example.py`
+
+to make it run all the time, i.e when the raspberry pi is turned on you can add it to the startup processes.
+
+check out my other blog post on startup processes <a href="https://breenblog.herokuapp.com/raspberry-pi-startup-processes/">here</a>
+
+
