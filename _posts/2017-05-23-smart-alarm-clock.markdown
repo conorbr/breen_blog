@@ -13,8 +13,13 @@ Tired of you boring alarm on your phone? check out my new alarm clock project th
 
 obligatory updates:
 
-<code>sudo apt-get update</code>
-<code>apt-get upgrade</code>
+~~~ shell
+sudo apt-get update
+~~~
+
+~~~ shell
+apt-get upgrade
+~~~
 
 now lets begin, the first thing your going to want to do is to clone my Github repository for this project
 
@@ -23,8 +28,13 @@ now lets begin, the first thing your going to want to do is to clone my Github r
 
 Great, now we have the project code. Go ahead and cd into the project folder and run the controller.py file. this is the file that pulls the strings.
 
-<code>cd talking-alarm-clock</code>
-<code>python controller.py</code>
+~~~ shell
+cd talking-alarm-clock
+~~~
+
+~~~ shell
+python controller.py
+~~~
 
 you can set the time its triggered here in the project code, but what if we could make it easier. well you're in luck! i made an android app to allow you to set the time from your phone.
 

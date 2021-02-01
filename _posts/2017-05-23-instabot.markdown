@@ -12,30 +12,40 @@ This project is stupid easy to setup. so lets begin.
 
 First things first:
 
-<code>sudo apt-get update</code>
-<code>sudo apt-get upgrade</code>
+~~~ shell
+sudo apt-get update && sudo apt-get upgrade
+~~~
+
+~~~ shell
+sudo apt-get update
+~~~
 
 
 The project code can be found on Github. credit goes to the creator LevPesha, for this truly amazing project.
 
 Aaaaaand lets clone
 
-<code>git clone https://github.com/instabot-py/instabot.py</code>
+~~~ shell
+git clone https://github.com/instabot-py/instabot.py
+~~~
 
 This gets the required project files, so what were going to want to do is cd into the project folder.
 
-<code>cd instabot.py</code>
+~~~ shell
+cd instabot.py
+~~~
+
 
 Now that were in our project folder were going to want to go ahead and open up the example.py file. This is the python file that we're going to run. but first we need to make some changes.
 
 The easiest way to make changes to the file is to use nano.
 
-<code>sudo nano example.py</code>
+sudo nano example.py
 
 This will open up the example.py using the nano text editor. From here were going to want to put in our username and password so the bot can login. We're also going to want to set the tag list. This is the list of tags that the bot will search and like the content for. so put in the tags you want the bot to focus on.
 
 
-```
+~~~ python
 bot = InstaBot(
     login="your username goes here",
     password="your password too",
@@ -65,7 +75,7 @@ bot = InstaBot(
         'follow', 'follower', 'gain', '.id', '_id', 'bags'
     ],
     unfollow_whitelist=['example_user_1', 'example_user_2'])
-```
+~~~
 
 Be sure to add a comprehensive tag blacklist, with all of those nsfw words that you don't want the bot to like.
 

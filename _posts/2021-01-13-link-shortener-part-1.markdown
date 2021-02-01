@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 'Link Shortener: Part 1'
+subtitle: Whether you're a person with a long link, or a down and out Nigerian prince. This is the blog post for you
 image: https://mybigplunge.com/wp-content/uploads/2018/04/url-shortener-theplungedaily.jpg
 date: '2021-01-13 23:21:47'
 tags:
@@ -32,39 +33,39 @@ We're going to create an api allows us to CRUD the absolute beans out of a link 
 
 Rails has introduced a very handy API only version of itself, that allows you to ignore all of the clunky views and unnecessary boilerplate and create a super lean api that it just so happens lends itself quite well to this very purpose.
 
-```
+~~~ shell
 $ rails new link_shortener --api -d postgresql -T && cd link_shortener
-```
+~~~
 
 That unsuspecting little line just created our rails api, set the database and for good measure didn't set the default test folders, but more on that later. And just for flare it will cd you into the project. But that's just me being fancy.
 
 First things first, lets talk tests. In our gemfile we're going to add the [rspec-rails gem](https://github.com/rspec/rspec).
 
-```
+~~~ ruby
 group :development, :test do
   #[...]
   gem 'rspec-rails', '~> 3.5'
 end
-```
+~~~
 
 This is a little shorthand to require the gem in both your development and test environments.
 
 Now add `factory_bot_rails`, `shoulda_matchers`, `faker` and `database_cleaner` to the :test group.
 
-```
+~~~ ruby
 group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'shoulda-matchers', '~> 4.0'
 end
-```
+~~~
 
 Install these gems by running
 
-```
+~~~ shell
 $ bundle install
-```
+~~~
 
 This adds the following files which are used for configuration:
 
@@ -74,16 +75,16 @@ This adds the following files which are used for configuration:
 
 Create a factories directory (factory bot uses this as the default directory). This is where we’ll define the model factories.
 
-```
+~~~ shell
 $ mkdir spec/factories
-```
+~~~
 
 <hr>
 
 ####Configuration
 Configure your `/spec/rails_helper.rb`
 
-```
+~~~ ruby
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 require 'rspec/rails'
@@ -159,7 +160,7 @@ RSpec.configure do |config|
   end
 end
 
-```
+~~~
 
 Oooft that was a lot. But it's done, its easy from here.
 
@@ -169,13 +170,13 @@ Oooft that was a lot. But it's done, its easy from here.
 
 Ok, time to hit the model.
 
-```
+~~~ shell
 $ rails g model Link url:string slug:string clicked:integer
-```
+~~~
 
 This will result in the mirgration file being generated
 
-```
+~~~ ruby
 # db/migrate/[timestamp]_create_links.rb
 class CreateLinks < ActiveRecord::Migration[6.0]
   def change
@@ -188,17 +189,17 @@ class CreateLinks < ActiveRecord::Migration[6.0]
     end
   end
 end
-```
+~~~
 
 Looks good, lets get that change into the database
 
-```
+~~~ shell
 $ rails db:migrate
-```
+~~~
 
 We're test driven so lets go ahead and write the model specs
 
-```
+~~~ ruby
 require 'rails_helper'
 
 # Test suite for Link model
@@ -208,13 +209,13 @@ RSpec.describe Link, type: :model do
   it { should validate_presence_of(:url) }
   it { should validate_numericality_of(:clicked) }
 end
-```
+~~~
 
 Rspec has some very expressive language, its almost like reading a sentence. And those nifty shoulda matchers we referenced in our gemfile are coming in clutch.
 
 Now these wont pass as is, we're testing model validations that don't exist. So rather than spoil the mood with some red dots lets go ahead and add some validations to the links model
 
-```
+~~~ ruby
 class Link < ApplicationRecord
   before_validation :format_url
 
@@ -229,13 +230,13 @@ class Link < ApplicationRecord
   validates_length_of :url, within: 3..255, on: :create
   validates_length_of :slug, within: 1..255, on: :create
 end
-```
+~~~
 
 now run
 
-```
+~~~ shell
 $ bundle exec rspec
-```
+~~~
 
 And that's it, all green baby!
 
@@ -245,9 +246,9 @@ And that's it, all green baby!
 
 Now that our models are all setup, let’s generate the controllers.
 
-```
+~~~ shell
 $ rails g controller Todos
-```
+~~~
 
 And while we're working with an API application we're going to be writing [request specs](https://relishapp.com/rspec/rspec-rails/docs/request-specs/request-spec) instead.
 
@@ -255,24 +256,24 @@ Request specs work differently to normal controller tests, they're going to simu
 
 Lets setup our factory
 
-```
+~~~ shell
 $ touch spec/factories/links.rb
-```
+~~~
 
 And paste this in
 
-```
+~~~ ruby
 FactoryBot.define do
   factory :link do
     url { 'http://www.google.com' }
     slug { Faker::Name.unique.first_name }
   end
 end
-```
+~~~
 
 and with that, the controller specs. This is a big one, but hang tight we'll go through it.
 
-```
+~~~ ruby
 # frozen_string_literal: true
 
 require 'rails_helper'
@@ -402,7 +403,7 @@ RSpec.describe 'links API', type: :request do
     end
   end
 end
-```
+~~~
 
 We start by populating the database with a list of 10 link records (thanks to factory bot).
 We also have a custom helper method `json` which parses the JSON response to a Ruby Hash which is easier to work with in our tests.
@@ -410,11 +411,11 @@ Let’s define it in `spec/support/request_spec_helper`.
 
 Add the directory and file:
 
-```
+~~~ shell
 $ mkdir spec/support && touch spec/support/request_spec_helper.rb
-```
+~~~
 
-```
+~~~ ruby
 # frozen_string_literal: true
 
 module RequestSpecHelper
@@ -424,7 +425,7 @@ module RequestSpecHelper
   end
 end
 
-```
+~~~
 
 The support directory is not auto-loaded by default. To enable this, open the rails helper and comment out the support directory auto-loading and then
 include it as shared module for all request specs in the RSpec configuration block.

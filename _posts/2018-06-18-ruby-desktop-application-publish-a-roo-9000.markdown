@@ -22,11 +22,11 @@ Lets begin using shoes:
 
 I'm going to skip the [Download and Installation](http://shoesrb.com/manual/Installing.html) and get straight into it:
 
-```
+~~~ ruby
 Shoes.app(title: "Publish-a-roo 9000", width: 280) do
 	para("hello world")
 end
-```
+~~~
 
 Here's the bare bones GUI, with a title and a width value and string.
 
@@ -34,38 +34,39 @@ Here's the bare bones GUI, with a title and a width value and string.
 
 Exciting stuff, lets go wild and add in some input fields and buttons, maybe even a cheeky dropdown menu and assign them values for later.
 
-```
+~~~ ruby
 Shoes.app(title: "Publish-a-roo 9000", width: 280) do
-	stack(margin: 30) do
-		@locale = para " ", hidden: true
-		@bids = para " ", hidden: true
-		@destination = para " ", hidden: true
+  stack(margin: 30) do
+    @locale = para " ", hidden: true
+    @bids = para " ", hidden: true
+    @destination = para " ", hidden: true
 
-		para "Enter Locale:"
-		@input_1 = edit_line do |a|
-			@locale.text = @input_1.text
-		end
+    para "Enter Locale:"
+    @input_1 = edit_line do |a|
+      @locale.text = @input_1.text
+    end
 
-		flow do
-			@multi_locale = check
-			para "multiple locales"
-		end
+    flow do
+      @multi_locale = check
+      para "multiple locales"
+    end
 
-		para "Enter BIDs"
-			@input_2 = edit_box do |b|
-			@bids.text = @input_2.text
-		end
+    para "Enter BIDs"
+    @input_2 = edit_box do |b|
+      @bids.text = @input_2.text
+    end
 
-		 para "Choose a destination:"
-		@input_3 = list_box items: ["a value","another value"."one here too"] do |c|
-			where_to = @input_3.text
-		end
+    para "Choose a destination:"
+    @input_3 = list_box items: ["a value","another value"."one here too"] do |c|
+      where_to = @input_3.text
+    end
 
-		@button = button("open link", margin: 40) do
-			# something cool
-		end
+    @button = button("open link", margin: 40) do
+      # something cool
+    end
+  end
 end
-```
+~~~
 
 Which should give us something like this:
 ![alt](https://s3-eu-west-1.amazonaws.com/breenblogbucket/2018/06/Capture2.PNG)
@@ -74,123 +75,122 @@ Now we need to just stick in the logic (and straighten that annoying off-center 
 
 So without further adieu, the final code:
 
-```
+~~~ ruby
 Shoes.app(title: "Publish-a-roo 9000", width: 280) do
-	stack(margin: 30) do
-		@locale = para " ", hidden: true
-		@bids = para " ", hidden: true
-		@destination = para " ", hidden: true
+  stack(margin: 30) do
+    @locale = para " ", hidden: true
+    @bids = para " ", hidden: true
+    @destination = para " ", hidden: true
 
-		para "Enter Locale:"
-		@input_1 = edit_line do |a|
-			@locale.text = @input_1.text
-		end
+    para "Enter Locale:"
+    @input_1 = edit_line do |a|
+      @locale.text = @input_1.text
+    end
 
-		flow do
-			@multi_locale = check
-			para "multiple locales"
-		end
+    flow do
+      @multi_locale = check
+      para "multiple locales"
+    end
 
-		para "Enter BIDs"
-			@input_2 = edit_box do |b|
-			@bids.text = @input_2.text
-		end
+    para "Enter BIDs"
+    @input_2 = edit_box do |b|
+      @bids.text = @input_2.text
+    end
 
-		 para "Choose a destination:"
-		@input_3 = list_box items: ["product storytelling", "pdp storytelling", "live site", "market data", "published products", "global settings",  "bundle data", "assets", "pdp history", "pdp history" , "broadcast tempalte", "preview", "publishing", "notes" ] do |c|
-			where_to = @input_3.text
-			case where_to
-			when "pdp storytelling"
-				@destination.text = "storytelling"
-			when "product storytelling"
-				@destination.text = "details"
-			when "live site"
-				@destination.text = "live"
-			when "global settings"
-				@destination.text = "global"
-			when "market data"
-				@destination.text = "market"
-			when "bundle data"
-				@destination.text = "bundle"
-			when "assets"
-				@destination.text = "assets"
-			when "pdp history"
-				@destination.text = "history"
-			when "broadcast tempalte"
-				@destination.text = "broadcasting"
-			when "preview"
-				@destination.text = "preview"
-			when "publishing"
-				@destination.text = "publish"
-			when "notes"
-				@destination.text = "notes"
-			when "published products"
-				@destination.text = "published_products"
-			else
-				@destination.text = "storytelling"
-			end
-		end
+    para "Choose a destination:"
+    @input_3 = list_box items: ["product storytelling", "pdp storytelling", "live site", "market data", "published products", "global settings",  "bundle data", "assets", "pdp history", "pdp history" , "broadcast tempalte", "preview", "publishing", "notes" ] do |c|
+      where_to = @input_3.text
+      case where_to
+      when "pdp storytelling"
+        @destination.text = "storytelling"
+      when "product storytelling"
+        @destination.text = "details"
+      when "live site"
+        @destination.text = "live"
+      when "global settings"
+        @destination.text = "global"
+      when "market data"
+        @destination.text = "market"
+      when "bundle data"
+        @destination.text = "bundle"
+      when "assets"
+        @destination.text = "assets"
+      when "pdp history"
+        @destination.text = "history"
+      when "broadcast tempalte"
+        @destination.text = "broadcasting"
+      when "preview"
+        @destination.text = "preview"
+      when "publishing"
+        @destination.text = "publish"
+      when "notes"
+        @destination.text = "notes"
+      when "published products"
+        @destination.text = "published_products"
+      else
+        @destination.text = "storytelling"
+      end
+    end
 
-		@button = button("open link", margin: 40) do
-			if @multi_locale.checked? && @destination.text.to_s != "live" && @destination.text.to_s != "published_products"
-					locales = @locale.text.split(" ")
-					locales.each do |locale|
-					bid = @bids.text.to_s
-					destination = @destination.text.to_s
-					#system("start https://www.microsoft.com/#{locale}/#{bid}/b/#{destination}")
-					system("start https://sftools.trafficmanager.net/store/#{locale}/products/#{bid}/#{destination}")
-				end
-			elsif @destination.text.to_s == "live"
-					if @multi_locale.checked?
-						locales = @locale.text.split(" ")
-						locales.each do |locale|
-						bid = @bids.text.to_s
-						destination = @destination.text.to_s
-						#system("start https://www.microsoft.com/#{locale}/#{bid}/b/#{destination}")
-						system("start https://www.microsoft.com/#{locale}/store/d/pbr_9000/#{bid}")
-					end
-						else
-							bids = @bids.text.split(" ")
-							bids.each do |bid|
-							locale = @locale.text.to_s
-							system("start https://www.microsoft.com/#{locale}/store/d/pbr_9000/#{bid}")
-							end
-						end
-					elsif @destination.text.to_s == "published_products"
-						if @multi_locale.checked?
-							locales = @locale.text.split(" ")
-							locales.each do |locale|
-							bid = @bids.text.to_s
-							destination = @destination.text.to_s
-							#system("start https://www.microsoft.com/#{locale}/#{bid}/b/#{destination}")
-							system("start https://sftools.trafficmanager.net/store/#{locale}/published-products/#{bid}/storytelling")
-						end
-						else
-						bids = @bids.text.split(" ")
-						bids.each do |bid|
-						locale = @locale.text.to_s
-						system("start https://sftools.trafficmanager.net/store/#{locale}/published-products/#{bid}/storytelling")
-						end
-					end
-			else
-			bids = @bids.text.split(" ")
-			bids.each do |bid|
-				locale = @locale.text.to_s
-				destination = @destination.text.to_s
-			#system("start https://www.microsoft.com/#{locale}/#{bid}/b/#{destination}")
-			system("start https://sftools.trafficmanager.net/store/#{locale}/products/#{bid}/#{destination}")
-				end
-			end
-		end
-	end
-	para(
-	link("click here for help").click do
-		system("start https://github.com/conorbr/Publish-a-roo-9000#publish-a-roo-9000")
+    @button = button("open link", margin: 40) do
+      if @multi_locale.checked? && @destination.text.to_s != "live" && @destination.text.to_s != "published_products"
+        locales = @locale.text.split(" ")
+        locales.each do |locale|
+          bid = @bids.text.to_s
+          destination = @destination.text.to_s
+          #system("start https://www.microsoft.com/#{locale}/#{bid}/b/#{destination}")
+          system("start https://sftools.trafficmanager.net/store/#{locale}/products/#{bid}/#{destination}")
+        end
+      elsif @destination.text.to_s == "live"
+        if @multi_locale.checked?
+          locales = @locale.text.split(" ")
+          locales.each do |locale|
+            bid = @bids.text.to_s
+            destination = @destination.text.to_s
+            #system("start https://www.microsoft.com/#{locale}/#{bid}/b/#{destination}")
+            system("start https://www.microsoft.com/#{locale}/store/d/pbr_9000/#{bid}")
+          end
+        else
+          bids = @bids.text.split(" ")
+          bids.each do |bid|
+            locale = @locale.text.to_s
+            system("start https://www.microsoft.com/#{locale}/store/d/pbr_9000/#{bid}")
+          end
+        end
+      elsif @destination.text.to_s == "published_products"
+        if @multi_locale.checked?
+          locales = @locale.text.split(" ")
+          locales.each do |locale|
+            bid = @bids.text.to_s
+            destination = @destination.text.to_s
+            #system("start https://www.microsoft.com/#{locale}/#{bid}/b/#{destination}")
+            system("start https://sftools.trafficmanager.net/store/#{locale}/published-products/#{bid}/storytelling")
+          end
+        else
+          bids = @bids.text.split(" ")
+          bids.each do |bid|
+            locale = @locale.text.to_s
+            system("start https://sftools.trafficmanager.net/store/#{locale}/published-products/#{bid}/storytelling")
+          end
+        end
+      else
+        bids = @bids.text.split(" ")
+        bids.each do |bid|
+          locale = @locale.text.to_s
+          destination = @destination.text.to_s
+          #system("start https://www.microsoft.com/#{locale}/#{bid}/b/#{destination}")
+          system("start https://sftools.trafficmanager.net/store/#{locale}/products/#{bid}/#{destination}")
+        end
+      end
+    end
   end
-)
-
+  para(
+    link("click here for help").click do
+      system("start https://github.com/conorbr/Publish-a-roo-9000#publish-a-roo-9000")
+    end
+  )
 end
-```
+~~~
 
 And that's it, with this certain tasks that required and hour to do now could be completed in under 20 minutes. It's certainly not the most elegant piece of code you'll ever see but for the purposes of the work we were doing it worked just fine for myself and my team.
 

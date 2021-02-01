@@ -21,17 +21,17 @@ The game is Tic Tac Toe, everyone's played it and it makes for a good coding exe
 
 lets begin with creating the Game class
 
-```
+~~~ ruby
 class Game
   def initialize()
 
   end
 end
-```
+~~~
 
 Now we have a class with an initialize method in it, easy money. Now lets get the contestants.
 
-```
+~~~ ruby
 class Game
   def initialize()
    setup_players
@@ -48,13 +48,13 @@ class Game
   end
 end
 
-```
+~~~
 
 So here we've added a simple method to setup the players, it prompts them to enter their names and grabs the text and stores it in a class variable. We also want this to run as soon as the game is run so we call the method in our initialize method.
 
 Its all well and good having the players but they have nothing to play, lets create the board.
 
-```
+~~~ ruby
   def setup_board
     @board = {one: 1, two: 2, three: 3, four: 4, five: 5,
               six: 6, seven: 7, eight: 8, nine: 9}
@@ -69,21 +69,21 @@ Its all well and good having the players but they have nothing to play, lets cre
     puts("#{@board[:seven]} | #{@board[:eight]} | #{@board[:nine]}")
     puts("\n")
   end
-```
+~~~
 
 Now we're cooking with gas, we have a method that creates a hash giving each tile on the board a number, the idea being that if player ones presses 1 it will be replaced with an x. The get board method will get the board in its current state and print it to the screen. so when we run the game we'll be asked for our names and presented with the board
 
-```
+~~~ shell
 1 | 2 | 3
 - + - + -
 4 | 5 | 6
 - + - + -
 7 | 8 | 9
-```
+~~~
 
 This game is shaping up nicely, but the players can't interact with the board in any way. This might stifle gameplay so lets address that next. We want to make it possible for players to take turns choosing tiles and having the board update to reflect those changes. So, 1.) we need to prompt the player to pick a tile. 2.) we need to start a counter to govern who's turn it is and 3.) we need to print the new updated board back so the players can see where they are in the game.
 
-```
+~~~ ruby
   # the updated initialize method with our new methods in it.
   def initialize()
     @turn_counter = 0
@@ -109,23 +109,23 @@ This game is shaping up nicely, but the players can't interact with the board in
      end
      get_board
     end
-```
+~~~
 
 Lets take a look at what we've done. The player_move method checks the counter and if its even (0 is even too) its player1's go, and if its odd its player2's go. Simple, now it prompts the player to pick a tile, stores the input as a int, checks the value against the hash we created (subtracting 1 from the number because this is programming and everything starts at 0) earlier and updates it. so when we print the board again at the end of this method we can see the updated board with the player's input on it.
 
-```
+~~~ shell
 x | o | x
 - + - + -
 o | 5 | 6
 - + - + -
 7 | 8 | 9
-```
+~~~
 
 So far so good, but there's no winning in this game, just a board you get to update. The game looses its charm after you notice it never ends and you can update tiles that have already been chosen. Its a modern take on the game thus far, but certainly the game-breaking "features" takes away from the experience somewhat. So next on the list are the win/draw conditions and making sure the players can only update a tile once.
 
 First lets bang out the issue of multiple-use tiles:
 
-```
+~~~ ruby
   def tile_taken(tile)
     tile.kind_of?(String)
   end
@@ -153,11 +153,11 @@ First lets bang out the issue of multiple-use tiles:
     end
     get_board
   end
-```
+~~~
 
 Now that that's been ironed out, onto the win/draw conditions. Tic Tac Toe as a game only has 8 possible combinations that result in a player winning, with a number that low we can just hard-code them in and do a quick check to see if a player has won after each turn. And because there's only nine tiles, after 9 moves the game will end anyway because the board is full and the game is no longer playable.
 
-```
+~~~ ruby
   def win_condition_met
     if @board.values_at(:one,:two,:three).uniq.length == 1 ||
       @board.values_at(:four,:five,:six).uniq.length == 1 ||
@@ -202,7 +202,7 @@ Now that that's been ironed out, onto the win/draw conditions. Tic Tac Toe as a 
     move_limit_reached
   end
 end
-```
+~~~
 
 So, rather than checking twice, once for player1 and once for player2 to see who's won we can shorten it down a bit and use the [.uniq](https://apidock.com/ruby/Array/uniq) method to grab an array of the values and see if there's only one value in it. So if it's either all x or all o it will return true. Then do a quick check with the turn counter to see who's won. Almost every problem can be solved by putting stuff into arrays, remember: Work smart, not hard.
 
@@ -210,7 +210,7 @@ the next thing we did was to check to see if the game ended in a draw, and that'
 
 And that's about it, this took just over an hour to so a perfect interview-amount-of-time for a coding challenge. Here's the end result:
 
-```
+~~~ shell
 peter please select a tile:7
 
 x | o | x
@@ -220,11 +220,11 @@ o | x | o
 x | 8 | 9
 
 Congratulations peter you are the winner!
-```
+~~~
 
 If you were following along great, you've definitely run it by now and have had fun playing Tic Tac Toe. If not, Heres the TLDR, just copy and paste this code into a file and run it.
 
-```
+~~~ ruby
 class Game
   def initialize()
     @turn_counter = 0
@@ -309,4 +309,4 @@ end
 
 Game.new()
 
-```
+~~~

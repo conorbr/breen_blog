@@ -15,16 +15,17 @@ From what I can tell it's surprisingly easy to make one of these and there's a l
 
 Lets begin, to start we need to install the Tweepy library:
 
-```
+~~~ python
 pip install tweepy
-```
+~~~
+
 You can also clone the repository and install it manyally if you should so wish (I ended up using this method):
-```
+
+~~~ shell
 git clone https://github.com/tweepy/tweepy.git
 cd tweepy
 python setup.py install
-
-```
+~~~
 
 Lovely, now before we start we need a twitter account, get a profile picture and form an identity.
 
@@ -33,7 +34,7 @@ Lovely, now before we start we need a twitter account, get a profile picture and
 
 Now that we're up and running, lets open up our favorite [text editor](http://atom.io) and begin. To start we need to get the keys from twitter which requires you to go back and forth with registration forms and email verification etc. That's boring so lets skip that part and get into the code.
 
-```
+~~~ python
 import tweepy
 from tweepy.streaming import StreamListener
 
@@ -47,24 +48,25 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 user = api.me()
-```
+~~~
 
 Now we can begin, the first thing I want to do is to reply to Trump's tweets. As the political representative for Ireland Big Sean Murphy needs to be vigilant, striking as soon as a tweet is posted and replying post haste with the words of the Irish people. So lets do that.
 
 This line will get the last tweet posted by the user realDonaldTrump, which will work nicely for our purposes
-```
+
+~~~ python
 stuff = api.user_timeline(screen_name = 'realDonaldTrump', count = 1, include_rts = True)
-```
+~~~
 
 and to reply all we need to do is to use the `update_status` method
 
-```
+~~~ python
 api.update_status("@realdonaldtrump " + tweet, in_reply_to_status_id = status.id)
-```
+~~~
 
 That's basically it. We need to make sure we don't reply to the same tweet twice, so it makes sense when replying to a tweet to save the tweet id to a text file `last_tweet_id.txt` and throw the whole thing into an `IF/ELSE` statement like so:
 
-```
+~~~ python
 for status in stuff:
     with open('last_tweet_id.txt', 'r') as myfile:
         old_tweet_id = myfile.read().replace('\n', '')
@@ -74,19 +76,19 @@ for status in stuff:
         else:
             tweet = "some kind words"
             api.update_status("@realdonaldtrump " + tweet, in_reply_to_status_id = status.id)
-```
+~~~
 
 Looking good, the next thing I want to try is have Big Sean Murphy read a tweet sent to him. How cool would it be if you could tweet at him with the hashtag #TellHim and he would relay that message onto Doland Trump for you, in the voice of Ireland's political representative.
 
 We've a good thing going with the loop n' sleep format from the last one so lets use that. However, while we can remain fairly certain trump isn't going to tweet 100 times in a minute, the popularity of Sean Murphy and his responsibility to the Irish People requires him to respond to every beck-and-call, for the good of the realm. Lets get the last 100 mentions just to be safe
 
-```
+~~~ python
 for mentions in tweepy.Cursor(api.mentions_timeline).items():
-```
+~~~
 
 (we can also use a text file to make sure we don't have any duplicates)
 
-```
+~~~ python
 for mentions in tweepy.Cursor(api.mentions_timeline).items():
     if "#tellhim" in mentions.text.lower():
         if str(mentions.id) not in open('reply_tweet_ids.txt').read():
@@ -106,7 +108,7 @@ for mentions in tweepy.Cursor(api.mentions_timeline).items():
     else:
         print("not a tell him tweet")
 time.sleep(120)
-```
+~~~
 
 Nice use of string interpolation there if I do say so myself, now to have these both run side by side we're going to need threading. multi-threaded programming, It sounds like I'm applying for a job.
 
@@ -114,7 +116,7 @@ First things first we need to `import threading` and while we're at it `import r
 
 Then we can define each part of the code as its own thread like this
 
-```
+~~~ python
 def thread_1():
    #send tweets to trump
 
@@ -127,11 +129,11 @@ t2 = threading.Thread(target = thread_2)
 
 t1.start()
 t2.start()
-```
+~~~
 
 Now all we have to do is put everything together and run it. I have also flushed out the responses into three different arrays. This means that to form a tweet Sean Murphy can chose a string from each array and piece together a response on the fly.
 
-```
+~~~ python
 import tweepy
 import Tkinter
 import random
@@ -212,14 +214,10 @@ t2 = threading.Thread(target = thread_2)
 
 t1.start()
 t2.start()
-```
+~~~
 
 It appears to be working as it should.
 
 ![alt](https://s3-eu-west-1.amazonaws.com/breenblogbucket/2018/06/Screen-Shot-2018-06-13-at-13.14.38-1.png)
-
-
-
-
 
 don't forget to [follow him on twitter](https://twitter.com/Big_Sean_Murph/with_replies)

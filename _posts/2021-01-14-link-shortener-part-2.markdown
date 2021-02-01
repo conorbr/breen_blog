@@ -1,7 +1,7 @@
 ---
 layout: post
 title: URL shortener - Part 2
-subtitle: The url shortener part 2 aka url shortner reloaded aka url shortener Tokyo Drift.
+subtitle: 'The url shortener part 2 aka: url shortner reloaded aka: url shortener Tokyo Drift.'
 date: '2021-01-14 11:57:08'
 ---
 

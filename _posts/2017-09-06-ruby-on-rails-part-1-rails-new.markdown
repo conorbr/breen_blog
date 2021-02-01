@@ -22,7 +22,7 @@ Now lets see what our brand-spanking new site looks like. For that we'll have to
 `rails s`
 
 
-```
+~~~ shell
 => Booting WEBrick
 => Rails 4.2.6 application starting in development on http://localhost:3000
 => Run `rails server -h` for more startup options
@@ -30,7 +30,7 @@ Now lets see what our brand-spanking new site looks like. For that we'll have to
 [2017-09-06 18:03:23] INFO  WEBrick 1.3.1
 [2017-09-06 18:03:23] INFO  ruby 2.3.1 (2016-04-26) [x86_64-darwin16]
 [2017-09-06 18:03:23] INFO  WEBrick::HTTPServer#start: pid=56174 port=3000
-```
+~~~
 
 Now that the server is up and running it time to see the website in action.
 
@@ -50,28 +50,28 @@ Add the files in your new local repository. This stages them for the first commi
 
 Commit the files that you've staged in your local repository.
 
-```
+~~~ shell
 git commit -m "First commit"
 # Commits the tracked changes and prepares them to be pushed to a remote repository. To remove this commit and modify the file, use 'git reset --soft HEAD~1' and commit and add the file again.
-```
+~~~
 
 At the top of your GitHub repository's Quick Setup page, click to copy the remote repository URL. 
 
 In Terminal, add the URL for the remote repository where your local repository will be pushed.
 
-```
+~~~ shell
 git remote add origin remote REPOSITORY_URL
 # Sets the new remote
 git remote -v
 # Verifies the new REMOTE_URL
-```
+~~~
 
 then you just need to push the changes in your local repository to GitHub.
 
-```
+~~~ shell
 git push -u origin master
 # Pushes the changes in your local repository up to the remote repository you specified as the origin
-```
+~~~
 
 And that's it, in the space of just a few short minutes we have a website, running locally on our server and the code safely stored on the cloud. kicking ass and taking names!
 

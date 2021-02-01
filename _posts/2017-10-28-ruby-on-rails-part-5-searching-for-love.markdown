@@ -14,22 +14,23 @@ I started this section on a whim looking through nice input fields and came acro
 
 Lets go head and integrate Semantic UI into out project:
 
-```
+~~~ ruby
 gem 'semantic-ui-sass'
-```
+~~~
 And then in both our application css and js files respectively:
 
-```
+~~~ ruby
 @import "semantic-ui";
-```
+~~~
 and 
-```
+~~~ ruby
 //= require semantic-ui
 
-```
+~~~
+
 And then we just go ahead and create a `<select>` tag with the styling and elements required by semantic UI and then add it it in, piece of cake.
 
-```
+~~~ html
 <select id="MultipleSelect" multiple="" name="skills" class="ui fluid search dropdown form-control">
   <option value='aww'>aww</option>
   <option value='funny'>funny</option>
@@ -42,7 +43,7 @@ And then we just go ahead and create a `<select>` tag with the styling and eleme
 $('.ui.dropdown')
   .dropdown();
 </script>
-```
+~~~
 
 Life's too short to go through each `<option>` tag and writing in the content and value so I wrote [this](https://gist.github.com/conorbr/a09ba9662a7cd19154ba0da728a38b96). As the saying goes, why stand when you can sit.
 
@@ -53,7 +54,7 @@ Having a nice dropdown menu is all well and good but I've kinda shot myself in t
 
 well first we need to go ahead and consult the controller, because that is whats going to parse the url that comes in when a search is made.
 
-```
+~~~ ruby
 def get_url_params
     url_params = request.fullpath.split("?")
     tidy_params = url_params.map { |word| word.gsub('/','') }
@@ -68,21 +69,21 @@ end
     @pictures = Pic.all
     @params = get_url_params
   end
-```
+~~~
 
 So I created a method that will look at the incoming url, find the path and split it into an array every time the `?` deliminator occurs. And if there is nothing just default to the 'aww' category. Now we're getting places because with that we can now pass the `get_url_params` variable into our `index.html.erb`
 
 I went ahead and updated the ruby code in the index page to accept this new array and grab each of the categories requested:
 
-```
+~~~ ruby
 <% @pictures.where(category: @params).limit(200).each do |data|%>
   <%= image_tag data.link, :data => { :caption => data.title} %>
 <%end%>
-```
+~~~
 
 now, we just need to be able to search our categories. So coming back full circle now we need to actually get the values the user selects when choosing a category, and for that, what else but JavaScript.
 
-```
+~~~ erb
   <script>
   $("#MultipleSelect").change(function(getUserSearch){
       var category_array = []
@@ -92,15 +93,15 @@ now, we just need to be able to search our categories. So coming back full circl
       document.getElementById("burl").href = search_result_url;
   });
   </script>
-```
+~~~
 
 
 so what's happening above is im grabbing the users input, pusing them into an array, the splitting them up with a `?`. Then i go ahead and assign this value to the button i created with the id of `burl`
 
-```
+~~~ erb
 <a href="?aww" id="burl" onclick="window.location.reload(true);" class="btn btn-default">Search</a>
+~~~
 
-```
 Just a side note, I added a `window.location.reload()` function to this button to refresh the page just to avoid anything weird going on when reloading the DOM. It works without it but having this means that nothing weird will happen when doing multiple searches in a row.
 
 now lets take a gander and see what this abomination looks like

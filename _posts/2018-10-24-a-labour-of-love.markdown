@@ -31,7 +31,7 @@ So, this project will be a mobile app written in swift, that will send a message
 ##The script
 The script is super easy. Its just a small Python script that will compare a stored string in a text file against a string sent through dweet from the app. If there's a discrepancy then the audio file plays and the text file is updated. Simple
 
-```
+~~~ python
 import dweepy
 import json
 import time
@@ -64,12 +64,12 @@ while True:
         print("there was nothing there")
         time.sleep(10)
 
-```
+~~~
 
 ##The App
 I've never created an IOS app before so this was a huge learning curve that involved getting to grips with [swift](http://), but in the end it was actually fine, and proved to be a nice environment. The app itself is quite simple, It's just a single button that when pressed generates a random eight character string and send it to Dweet.io via a post request. when run it also makes use of the [Google Text to Speach](https://github.com/pndurette/gTTS) library to create an audio file to play. This could easily be replaced by, in my case a WhatApp voice message.
 
-```
+~~~ python
 import UIKit
 import Alamofire
 
@@ -114,6 +114,6 @@ class ViewController: UIViewController {
     }
 
 }
-```
+~~~
 
 The I used [alamofire](http://https://github.com/Alamofire/Alamofire) for the post request, and installed it using [cocoapods](https://cocoapods.org/). I'll link the repositories at a later date for any of the fellow romantics out there.
