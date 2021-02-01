@@ -3,8 +3,8 @@ email:              conor@breen.ie
 description:        Want to see me make a to-do app?
 sub_description:    Me neither
 author:             Conor Breen
-baseurl:            "/breen_blog"
-url:                "https://conorbr.github.io/"
+baseurl:            ""
+url:                "breen.ie"
 
 # Social Profiles
 twitter_username:
@@ -14,7 +14,7 @@ instagram_username: insta.breen
 linkedin_username:  conor-breen
 
 # Add your google-analytics ID here to activate google analytics
-google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
+google_analytics:   G-XZKT4F7JP6
 
 # Build settings
 markdown:           kramdown
@@ -26,7 +26,6 @@ kramdown:
   input: GFM
   auto_ids: true
   syntax_highlighter: rouge
-
 
 plugins:
   - jekyll-feed

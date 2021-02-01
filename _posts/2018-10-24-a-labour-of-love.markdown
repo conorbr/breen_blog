@@ -1,7 +1,7 @@
 ---
 layout: post
 title: A labour of love
-subtitle: Raspberry pi with a side of hot coffee
+subtitle: A slice of raspberry pi with a side of hot coffee
 date: '2018-10-24 13:41:36'
 tags:
 - python
@@ -11,7 +11,7 @@ tags:
 
 From the dawn of time men have famously had their own primary drive, something that they will go without food/sleep to see complete. In the way that Neil Armstrong felt the need for aviation and later space exploration, the way George Bool created a seemingly useless form of mathematics to which every device we use now owes its existence. I, it would seem, found my time best spent shamelessly trying to impress a girl.
 
-Some backstory, I'm terrible for looking at my phone. It's perpetually on silent, because I feel that I should be the one who dictates when it gets my attention. Because of this people are *sometimes* left unread.
+Some backstory, I'm terrible for looking at my phone. It's perpetually on silent, because I feel that I should be the one who dictates when it gets my attention. Because of this people are *sometimes* left on read.
 
 Cue, what I have come to call the Megan Beacon
 
@@ -117,3 +117,5 @@ class ViewController: UIViewController {
 ~~~
 
 The I used [alamofire](http://https://github.com/Alamofire/Alamofire) for the post request, and installed it using [cocoapods](https://cocoapods.org/). I'll link the repositories at a later date for any of the fellow romantics out there.
+
+For what it's worth, it worked. She remains my girlfriend to this day, but she did change to android. Tune in again for part 2...
