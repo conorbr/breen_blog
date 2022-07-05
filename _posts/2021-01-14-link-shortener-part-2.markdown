@@ -28,7 +28,7 @@ $ rails routes
 
 Just beautiful. Now we have a list of all of the endpoints available to us. Not that they do anything mind you, but patience is a virtue.
 
-One I don't have, here's the links controller
+...A virtue I don't have, here's the links controller
 
 ~~~ ruby
 class LinksController < ApplicationController
@@ -189,7 +189,7 @@ end
 
 so, according to the Media Type Specification, you can define your own media types using the vendor tree i.e. application/vnd.example.resource+json.
 
-We're going to follow this specification for our api. Here we define a custom vendor media type `application/vnd.todos.{version_number}+json` giving clients the ability to choose which API version they require. No need to add `/v2/` to the url. Pretty cool right.
+We're going to follow this specification for our api. Here we define a custom vendor media type `application/vnd.links.{version_number}+json` giving clients the ability to choose which API version they require. No need to add `/v2/` to the url. Pretty cool right.
 
 Now we can go ahead and update our routes to have multiple versions
 
@@ -268,7 +268,7 @@ Rails.application.routes.draw do
 
   # module the controllers without affecting the URI
   scope module: :v2, constraints: ApiVersion.new('v2') do
-    resources :todos, only: :index
+    resources :links, only: :index
   end
 
   scope module: :v1, constraints: ApiVersion.new('v1', true) do
@@ -291,7 +291,7 @@ end
 ~~~
 
 Note: ruby will generate the shorthand for our class structure 
-`class V2::TodosController < ApplicationController`
+`class V2::LinksController < ApplicationController`
 you can use either or, I prefer the long hand.
 
 Great! now lets fire out some tests
@@ -334,7 +334,7 @@ Generate the serializer for the link model
 $ rails g serializer link
 ~~~
 
-This creates a new directory `app/serializers` and adds a new file `link_serializer.rb`. Let's define the todo serializer with the data that we want it to contain.
+This creates a new directory `app/serializers` and adds a new file `link_serializer.rb`. Let's define the link serializer with the data that we want it to contain.
 
 ~~~ ruby
 class LinkSerializer < ActiveModel::Serializer
@@ -385,7 +385,7 @@ well
 
 <hr>
 
-####Conclusion
+#### Conclusion
 
 We now have a rails 6 api, complete with a full test suite, serializers and a beautifully versioned api. Not too shabby.
 

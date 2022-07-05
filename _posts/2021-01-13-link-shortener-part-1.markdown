@@ -23,11 +23,11 @@ Well, It's been some time since my last post. And I'm well aware very few people
 
 so!
 
-Lets talk url shorteners, url shorteners are a super handy way to grab a long and cumbersome http link and shorten it. This is super handy when we want to post a link somewhere there's a strict character limit, have to type something manually or are posing as a Nigerian prince looking for some temporary funds to gain access to their wider fortune.
+Lets talk url shorteners, url shorteners are a super handy way to grab a long and cumbersome http link and shorten it. This is great when we want to post a link somewhere there's a strict character limit, have to type something manually or are posing as a Nigerian prince looking for some temporary funds to gain access to their wider fortune.
 
-Link shorteners really are the backbone of the modern age. And what's more they're super easy. Just store the long url you want to go to, set an short easy to remember word (or slug) and when the time comes, take the slug and redirect to the corresponding url.
+Link shorteners really are the backbone of the modern age. And what's more they're relativey easy to implement. Just store the long url you want to go to, set an short easy to remember word (or slug) and when the time comes, take the slug and redirect to the corresponding url.
 
-We're going to create an api allows us to CRUD the absolute beans out of a link record and when we ask politely redirect us to the target website. To do this we're going to start with Rails.
+We're going to create an api allows us to CRUD the absolute beans out of a link record and when we ask politely it will redirect us to the target website. To do this we're going to start with Rails.
 
 ![](https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/107042204/original/b981cd0ed3a32f6e94a0ab767688e6a8de2dfa59/create-a-rails-api-for-your-application-or-website.png)
 
@@ -37,7 +37,7 @@ Rails has introduced a very handy API only version of itself, that allows you to
 $ rails new link_shortener --api -d postgresql -T && cd link_shortener
 ~~~
 
-That unsuspecting little line just created our rails api, set the database and for good measure didn't set the default test folders, but more on that later. And just for flare it will cd you into the project. But that's just me being fancy.
+That unsuspecting little line just created our rails api, set the database and for good measure didn't set the default test folders, but more on that later. And for a little added flare it will cd you into the project. But that's just me being fancy.
 
 First things first, lets talk tests. In our gemfile we're going to add the [rspec-rails gem](https://github.com/rspec/rspec).
 
@@ -81,7 +81,7 @@ $ mkdir spec/factories
 
 <hr>
 
-####Configuration
+#### Configuration
 Configure your `/spec/rails_helper.rb`
 
 ~~~ ruby
@@ -162,11 +162,11 @@ end
 
 ~~~
 
-Oooft that was a lot. But it's done, its easy from here.
+Oooft that was a lot. But it's done, its easy from here on out.
 
 <hr>
 
-####Model
+#### Model
 
 Ok, time to hit the model.
 
@@ -242,12 +242,12 @@ And that's it, all green baby!
 
 <hr>
 
-####Controller
+#### Controller
 
 Now that our models are all setup, let’s generate the controllers.
 
 ~~~ shell
-$ rails g controller Todos
+$ rails g controller Links
 ~~~
 
 And while we're working with an API application we're going to be writing [request specs](https://relishapp.com/rspec/rspec-rails/docs/request-specs/request-spec) instead.
@@ -436,9 +436,6 @@ Run the tests and you'll see a sea of red. But that's ok because we're going to 
 
 <hr>
 
-####Conclusion
+#### Conclusion
 
 So a quick recap, we've created a ruby on rails api, created the models, and of course setup our test suite. In [part 2](https://breenblog.herokuapp.com/link-shortener-part-2/) we'll create the routes, version our api and start creating links!
-
-
-
