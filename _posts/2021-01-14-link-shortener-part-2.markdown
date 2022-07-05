@@ -210,7 +210,7 @@ We've set the version constraint at the namespace level. Handily, this will be a
 
 In the event we were to add new versions, they would have to be defined above the default version since Rails will just cycle through all routes from top to bottom searching for one that matches(till method `matches?` resolves to `true`).
 
-lets give our controller's a new home
+lets give our controllers a new home
 
 ~~~ shell
 $ mkdir app/controllers/v1
