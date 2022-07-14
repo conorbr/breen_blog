@@ -3,7 +3,7 @@ layout: post
 title: Unplanned obsolescence
 subtitle: 'Are managers doomed to forget it all and become suits. A TED talk'
 date: '2022-07-13 21:29:41'
-published: false
+hidden: true
 ---
 
 There comes a time in every man's life where he is confronted with the stark realisation of own inability, for every Mike Tyson there's an Evander Holyfield, for every Lance Armstrong there's a controlled substance committee. And for me there was this coding challenge 
